@@ -163,4 +163,15 @@ else
     echo "C development tools installation completed."
 fi
 
+
+#Java
+if command -v javac >/dev/null 2>&1; then
+    echo "Java JDK is already installed: $(javac -version 2>&1)"
+else
+    echo "Java JDK not found. Installing the latest default JDK..."
+    sudo apt update
+    sudo apt install -y default-jdk
+    echo "Latest Java JDK installation completed."
+fi
+
 echo "=== Install Script Completed ==="
