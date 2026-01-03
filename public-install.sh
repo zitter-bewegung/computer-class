@@ -3,8 +3,27 @@
 echo "=== Starting Install Script ==="
 # Add user here and permissions here
 
-#name=${1:-"World"}
-#echo "Hello, $name!"
+USER_PASSWORD="$1"
+USERNAME="user"
+
+echo "Checking if user '$USERNAME' exists..."
+
+if id -u "$USERNAME" >/dev/null 2>&1; then
+    echo "User '$USERNAME' already exists."
+else
+    echo "Creating user '$USERNAME' with specified password..."
+    
+    # Create user with home directory and bash shell
+    sudo adduser --gecos "" --disabled-password "$USERNAME"
+    
+    # Set the password from the first argument
+    echo "$USERNAME:$USER_PASSWORD" | sudo chpasswd
+    
+    # Ensure user is NOT in sudoers
+    sudo deluser "$USERNAME" sudo 2>/dev/null || true
+
+    echo "User '$USERNAME' created. They will not have sudo privileges."
+fi
 
 echo "Updating package list..."
 sudo apt-get update
