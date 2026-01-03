@@ -75,10 +75,6 @@ else
     echo "pip3 is already installed: $(pip3 --version)"
 fi
 
-echo "Upgrading pip3 to latest version..."
-python3 -m pip install --upgrade pip
-echo "pip upgrade completed."
-
 CONDA_DIR="$HOME/miniconda3"
 echo "Checking if Miniconda is installed..."
 if [ -d "$CONDA_DIR" ]; then
@@ -115,6 +111,56 @@ else
     sudo apt-get install -y aspnetcore-runtime-8.0
 
     echo "ASP.NET Core Runtime 8.0 installation completed."
+fi
+
+
+#Node.js
+NODE_VERSION="20"  # specify major version you want
+
+echo "Checking if Node.js is installed..."
+
+if command -v node >/dev/null 2>&1; then
+    echo "Node.js is already installed: $(node --version)"
+else
+    echo "Node.js is not installed. Installing Node.js version $NODE_VERSION..."
+
+    # Install prerequisites
+    sudo apt update
+    sudo apt install -y curl software-properties-common
+
+    # Add NodeSource repository
+    curl -fsSL https://deb.nodesource.com/setup_$NODE_VERSION.x | sudo -E bash -
+
+    # Install Node.js
+    sudo apt-get install -y nodejs
+
+    echo "Node.js installation completed."
+fi
+
+
+#c++
+if command -v g++ >/dev/null 2>&1; then
+    echo "g++ is already installed: $(g++ --version | head -n1)"
+else
+    echo "g++ not found. Installing C++ development tools..."
+
+    sudo apt update
+    sudo apt install -y build-essential
+
+    echo "C++ development tools installation completed."
+fi
+
+
+#c
+if command -v gcc >/dev/null 2>&1; then
+    echo "gcc is already installed: $(gcc --version | head -n1)"
+else
+    echo "gcc not found. Installing C development tools..."
+
+    sudo apt update
+    sudo apt install -y build-essential
+
+    echo "C development tools installation completed."
 fi
 
 echo "=== Install Script Completed ==="
