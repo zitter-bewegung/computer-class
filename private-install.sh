@@ -1,6 +1,6 @@
 #!/bin/bash
 
-url="https://raw.githubusercontent.com/user/repo/main/script.sh"
+url="https://raw.githubusercontent.com/zitter-bewegung/computer-class/main/public-install.sh"
 
 pwd="pwd1234"
 
