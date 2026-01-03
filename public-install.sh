@@ -115,7 +115,7 @@ fi
 
 
 #Node.js
-NODE_VERSION="20"  # specify major version you want
+NODE_VERSION="24"  # specify major version you want
 
 echo "Checking if Node.js is installed..."
 
