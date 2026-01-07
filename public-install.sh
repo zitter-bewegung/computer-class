@@ -4,7 +4,7 @@ echo "=== Starting Install Script ==="
 # Add user here and permissions here
 
 USER_PASSWORD="$1"
-USERNAME="user"
+USERNAME="student"
 
 echo "Checking if user '$USERNAME' exists..."
 
@@ -87,7 +87,6 @@ fi
 echo "Checking pip3 installation..."
 if ! command -v pip3 >/dev/null 2>&1; then
     echo "pip3 not found. Installing..."
-    sudo apt update
     sudo apt install -y python3-pip
     echo "pip3 installation completed."
 else
@@ -142,9 +141,7 @@ if command -v node >/dev/null 2>&1; then
     echo "Node.js is already installed: $(node --version)"
 else
     echo "Node.js is not installed. Installing Node.js version $NODE_VERSION..."
-
     # Install prerequisites
-    sudo apt update
     sudo apt install -y curl software-properties-common
 
     # Add NodeSource repository
@@ -152,7 +149,6 @@ else
 
     # Install Node.js
     sudo apt-get install -y nodejs
-
     echo "Node.js installation completed."
 fi
 
@@ -162,10 +158,7 @@ if command -v g++ >/dev/null 2>&1; then
     echo "g++ is already installed: $(g++ --version | head -n1)"
 else
     echo "g++ not found. Installing C++ development tools..."
-
-    sudo apt update
     sudo apt install -y build-essential
-
     echo "C++ development tools installation completed."
 fi
 
@@ -175,10 +168,7 @@ if command -v gcc >/dev/null 2>&1; then
     echo "gcc is already installed: $(gcc --version | head -n1)"
 else
     echo "gcc not found. Installing C development tools..."
-
-    sudo apt update
     sudo apt install -y build-essential
-
     echo "C development tools installation completed."
 fi
 
@@ -188,7 +178,6 @@ if command -v javac >/dev/null 2>&1; then
     echo "Java JDK is already installed: $(javac -version 2>&1)"
 else
     echo "Java JDK not found. Installing the latest default JDK..."
-    sudo apt update
     sudo apt install -y default-jdk
     echo "Latest Java JDK installation completed."
 fi
